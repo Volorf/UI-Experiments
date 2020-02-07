@@ -1,0 +1,33 @@
+body
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.container
+{
+    width: 300px;
+    height: 100px;
+}
+
+#fake_input 
+{
+    width: inherit;
+    height: inherit;
+    background-color: #eee;
+    position: absolute;
+    border-radius: 50px;
+}
+
+#input
+{
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    text-align: center;
+    z-index: 1000;
+    background-color: transparent;
+}
