@@ -1,4 +1,4 @@
-let count, colorCount, currentColor, bodyTag, input, fakeInput
+let count, colorCount, currentColor, bodyTag, input, fakeInput, caret
 
 const colors = 
 [   
@@ -7,6 +7,7 @@ const colors =
 
 bodyTag = document.getElementById("body")
 fakeInput = document.getElementById("fake_input")
+caret = document.getElementById("caret")
 
 input = document.getElementById("input")
 
@@ -25,6 +26,7 @@ function update()
     calcColorCount()
     setCurrentColor()
     setBackground()
+    updateCaretColor()
 }
 
 function setCurrentColor() 
@@ -56,7 +58,7 @@ function updateFakeInput(e)
 // Check for the delete button
 document.addEventListener("keydown", function(event) 
 {
-    if(event.which == "8" && fakeInput.children.length != 0)
+    if(event.which == "8")
     {
         input.removeEventListener("input", updateFakeInput)
         deleteLastElInFakeInput();
@@ -70,6 +72,14 @@ document.addEventListener("keydown", function(event)
 
 function deleteLastElInFakeInput()
 {
-    let lastElInFakeInput = fakeInput.children[fakeInput.children.length - 1]
-    fakeInput.removeChild(lastElInFakeInput)
+    if(fakeInput.children.length > 1)
+    {
+        let lastElInFakeInput = fakeInput.children[fakeInput.children.length - 1]
+        fakeInput.removeChild(lastElInFakeInput)
+    }
+}
+
+function updateCaretColor()
+{
+    caret.style.backgroundColor = currentColor;
 }

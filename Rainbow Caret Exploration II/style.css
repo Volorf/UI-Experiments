@@ -10,8 +10,8 @@ body
 
 .container
 {
-    width: 300px;
-    height: 100px;
+    width: 480px;
+    height: 120px;
 }
 
 #fake_input 
@@ -20,7 +20,13 @@ body
     height: inherit;
     background-color: #eee;
     position: absolute;
-    border-radius: 50px;
+    border-radius: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 56px;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 500;
 }
 
 #input
@@ -28,7 +34,39 @@ body
     position: absolute;
     width: inherit;
     height: inherit;
-    text-align: center;
+    text-align: left;
     z-index: 1000;
     background-color: transparent;
+    border-color: transparent;
+    caret-color: transparent;
+    color: transparent;
+    font-size: 1px;
+}
+
+#input:focus
+{
+    outline: none;
+}
+
+
+#caret
+{
+    width: 8px;
+    height: 56px;
+    transition: 0.5s ease;
+    order: 1;
+    opacity: 1;
+    animation: caretAnimation 1s ease infinite;
+}
+
+@keyframes caretAnimation
+{
+    0%
+    {
+        opacity: 1;
+    }
+    50%
+    {
+        opacity: 0;
+    }
 }
