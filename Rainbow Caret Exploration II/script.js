@@ -1,4 +1,4 @@
-let count, colorCount, currentColor, bodyTag, input, fakeInput, caret
+let count, colorCount, currentColor, bodyTag, input, fakeInput, caret, doUpdate, placeholder
 
 const colors = 
 [   
@@ -6,11 +6,15 @@ const colors =
 ]
 
 bodyTag = document.getElementById("body")
+
 fakeInput = document.getElementById("fake_input")
+fakeInput.classList.add("be_focused")
+
 caret = document.getElementById("caret")
-
 input = document.getElementById("input")
+placeholder = document.getElementById("placeholder")
 
+doUpdate = true
 count = 0
 colorCount = 0
 currentColor = colors[colorCount]
@@ -18,15 +22,18 @@ currentColor = colors[colorCount]
 setBackground()
 setInterval(update, 1000)
 
-
 // the method is called each second
 function update()
-{
-    count++
-    calcColorCount()
-    setCurrentColor()
-    setBackground()
-    updateCaretColor()
+{ 
+    if(doUpdate)
+      {
+        count++
+        calcColorCount()
+        setCurrentColor()
+        setBackground()
+        updateCaretColor()
+        updatePlaceholderColor()
+      }
 }
 
 function setCurrentColor() 
@@ -50,12 +57,12 @@ function updateFakeInput(e)
     let char = str.charAt(str.length - 1)
     let letter = document.createElement("letter")
     letter.innerHTML = char
+    letter.className = "letter"
     letter.style.color = currentColor
     fakeInput.appendChild(letter)
 }
 
-
-// Check for the delete button
+// Checking the delete button
 document.addEventListener("keydown", function(event) 
 {
     if(event.which == "8")
@@ -72,7 +79,7 @@ document.addEventListener("keydown", function(event)
 
 function deleteLastElInFakeInput()
 {
-    if(fakeInput.children.length > 1)
+    if (fakeInput.children.length > 1)
     {
         let lastElInFakeInput = fakeInput.children[fakeInput.children.length - 1]
         fakeInput.removeChild(lastElInFakeInput)
@@ -81,5 +88,28 @@ function deleteLastElInFakeInput()
 
 function updateCaretColor()
 {
-    caret.style.backgroundColor = currentColor;
+    caret.style.backgroundColor = currentColor
+}
+
+function updatePlaceholderColor()
+{
+  placeholder.style.color = currentColor
+}
+
+
+// Check for focus/unfocus
+input.onblur = () =>
+{
+  doUpdate = false
+  fakeInput.classList.remove("be_focused")
+  caret.style.display = "none"
+  placeholder.style.display = "block"
+}
+
+input.onfocus = () =>
+{
+  doUpdate = true;
+  fakeInput.classList.add("be_focused")
+  caret.style.display = "block"
+  placeholder.style.display = "none"
 }
