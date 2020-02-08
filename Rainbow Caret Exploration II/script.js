@@ -8,18 +8,19 @@ const colors =
 bodyTag = document.getElementById("body")
 
 fakeInput = document.getElementById("fake_input")
-fakeInput.classList.add("be_focused")
 
 caret = document.getElementById("caret")
 input = document.getElementById("input")
+
 placeholder = document.getElementById("placeholder")
 
-doUpdate = true
+doUpdate = false
 count = 0
 colorCount = 0
 currentColor = colors[colorCount]
 
 setBackground()
+updatePlaceholderColor()
 setInterval(update, 1000)
 
 // the method is called each second
