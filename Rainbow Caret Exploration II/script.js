@@ -79,7 +79,7 @@ document.addEventListener("keydown", function(event)
 
 function deleteLastElInFakeInput()
 {
-    if (fakeInput.children.length > 1)
+    if (fakeInput.children.length > 2)
     {
         let lastElInFakeInput = fakeInput.children[fakeInput.children.length - 1]
         fakeInput.removeChild(lastElInFakeInput)
@@ -103,7 +103,11 @@ input.onblur = () =>
   doUpdate = false
   fakeInput.classList.remove("be_focused")
   caret.style.display = "none"
-  placeholder.style.display = "block"
+  if (fakeInput.children.length <= 2)
+    {
+      placeholder.style.display = "block"
+    }
+  
 }
 
 input.onfocus = () =>
