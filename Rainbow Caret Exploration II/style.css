@@ -44,6 +44,11 @@ body
     font-size: 1px;
 }
 
+#input:hover
+{
+  cursor: none;
+}
+
 #input:focus
 {
     outline: none;
@@ -63,6 +68,7 @@ body
 .letter
 {
   animation: letter 0.5s ease;
+  margin-top: -2px;
 }
 
 @keyframes caretAnimation
@@ -86,6 +92,7 @@ body
 {
   opacity: 0.3;
   position:absolute;
+  margin-top: -2px;
 }
 
 .stop_caret_animation
